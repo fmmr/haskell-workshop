@@ -36,7 +36,7 @@ import Data.Char (digitToInt)
    Convert a numerical representation of the credit card number to a String
 -}
 numberToString :: Int -> String
-numberToString = _YOUR_CODE_HERE
+numberToString = show
 
 {-
    Step 2:
@@ -46,7 +46,7 @@ numberToString = _YOUR_CODE_HERE
          would want to apply `digitToInt` to every element of the string...
 -}
 stringToDigitList :: String -> [Int]
-stringToDigitList = _YOUR_CODE_HERE
+stringToDigitList = map (digitToInt)
 
 {-
    Step 3:
@@ -65,9 +65,9 @@ stringToDigitList = _YOUR_CODE_HERE
    that pattern and the reversed list to get what we want?
 -}
 doubleEveryOtherElement :: [Int] -> [Int]
-doubleEveryOtherElement xs = let xs'     = reverse xs
+doubleEveryOtherElement xs = let reversed     = reverse xs
                                  pattern = 1:2:pattern
-                              in reverse $ zipWith _YOUR_CODE_HERE xs' pattern
+                              in reverse $ zipWith (*) reversed pattern
 
 {-
    Step 4:
@@ -83,9 +83,9 @@ doubleEveryOtherElement xs = let xs'     = reverse xs
    functions you defined above.)
 -}
 sumDigitList :: [Int] -> Int
-sumDigitList xs = let xs1 = map _YOUR_CODE_HERE xs   -- step 1
+sumDigitList xs = let xs1 = map (show) xs            -- step 1
                       xs2 = concat xs1               -- step 2
-                      xs3 = _YOUR_CODE_HERE          -- step 3
+                      xs3 = stringToDigitList xs2    -- step 3
                    in sum xs3
 
 
@@ -95,7 +95,7 @@ sumDigitList xs = let xs1 = map _YOUR_CODE_HERE xs   -- step 1
    `mod`. Remember that you can partially apply a function.
 -}
 mod10 :: Int -> Int
-mod10 = _YOUR_CODE_HERE
+mod10 x = mod x 10
 
 {-
    Step 6:
@@ -114,5 +114,5 @@ mod10 = _YOUR_CODE_HERE
 -}
 isValidCreditCardNumber :: Int -> Bool
 isValidCreditCardNumber n = let digitList = (stringToDigitList . numberToString) n :: [Int]
-                                checksum  = _YOUR_CODE_HERE
+                                checksum  = (mod10 . sumDigitList . doubleEveryOtherElement) digitList
                              in checksum == 0

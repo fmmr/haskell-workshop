@@ -18,7 +18,7 @@ desugaredList = 1:(2:(3:[]))
 
     The ":" function takes an element and a list and returns a new list with
     the element prepended.
-    If this explanation didn't make much sense don't sweat it, we'll just focus
+    If this explanation˝ didn't make much sense don't sweat it, we'll just focus
     on using it in practice for now.
 
     Conceptually you can think of pattern matching on lists like this:
@@ -37,8 +37,7 @@ desugaredList = 1:(2:(3:[]))
     tip: the underscore represents a wildcard, matching any pattern. Replace
          it with a pattern match and get cracking!
 -}
-secondElement _ = _YOUR_CODE_HERE
-
+secondElement (x:y:xs) = y
 
 {-
     Exercise:
@@ -46,7 +45,7 @@ secondElement _ = _YOUR_CODE_HERE
     but returns the rest. Use pattern matching. Again, we'll assume that all
     lists are long enough for now...
 -}
-drop3 _ = _YOUR_CODE_HERE
+drop3 (x:y:z:xs) = xs
 
 
 {-
@@ -54,7 +53,8 @@ drop3 _ = _YOUR_CODE_HERE
     Define the thirdAndLast function so it accepts lists of length 3, and returns the third (and last)
     element in that list.
 -}
-thirdAndLast _ = _YOUR_CODE_HERE
+thirdAndLast (x:y:z:xs) = z
+
 
 {-
     It's tempting to write a function that returns the last element of the list
